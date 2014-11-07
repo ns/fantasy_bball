@@ -10,8 +10,8 @@ page = Nokogiri::HTML(open(ALL_PLAYER_STATS))
 
 stats = []
 page.css('table table.statscontent tr').each do |tr|
-  player_status = tr.css('td').collect(&:text)
-  stats << player_status.each_with_index.map{|stat, i| { COLUMNS[i] => stat }}.inject(&:merge)
+  player_stats = tr.css('td').collect(&:text)
+  stats << player_stats.each_with_index.map{|stat, i| { COLUMNS[i] => stat }}.inject(&:merge)
 end
 
 puts stats.inspect
